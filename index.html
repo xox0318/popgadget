@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POP Gadget - Your Tech & Accessories Spot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary: #FF5722; /* Vibrant Orange/Red for 'POP' */
+            --primary-dark: #E64A19;
+            --secondary: #343a40; /* Dark text */
+            --accent: #FFC107; /* Yellow for highlights */
+            --bg-light: #f8f F0F0; /* Slightly off-white for body */
+            --white: #ffffff;
+            --font-main: 'Inter', sans-serif;
+            --radius: 6px;
+        }
+
+        /* --- GLOBAL RESET & UTILITIES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-main);
+            color: var(--secondary);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        a { text-decoration: none; color: var(--primary); transition: 0.3s; }
+        a:hover { color: var(--primary-dark); }
+        ul { list-style: none; }
+
+        /* --- HEADER & HERO --- */
+        .header {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 40px 0 30px 0;
+            text-align: center;
+        }
+        .store-name {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .tagline {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+        
+        /* --- ADDRESS & CONTACT PLACEHOLDER --- */
+        .info-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .info-box p { margin-bottom: 5px; font-size: 1rem; }
+        .info-box i { color: var(--primary); margin-right: 8px; }
+
+        /* --- CAROUSEL STYLES --- */
+        .carousel-section {
+            background-color: var(--white);
+            padding: 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 800px;
+            margin: 0px auto;
+            border-radius: var(--radius);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel input[type="radio"] {
+            display: none;
+        }
+
+        .carousel-slides {
+            display: flex;
+            width: 300%; 
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .carousel-slide {
+            width: calc(100% / 3);
+            flex-shrink: 0;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+	
+	/* For Operating Hours */
+        .hours-container {
+            text-align: left; /* Align text within the hours box */
+            margin-top: 5px;
+            font-size: 0.95rem; /* Slightly smaller font for the list */
+        }
+        .hours-container i { 
+            color: var(--primary); 
+            margin-right: 8px; 
+            /* Align the icon with the first day/line */
+            align-self: flex-start; 
+        }
+        .hours-list {
+            display: inline-block; /* Allows icon and list to sit next to each other */
+            text-align: left; /* Ensures the list items are left-aligned */
+            margin-left: 30px; /* Indents the list items slightly */
+        }
+        .hours-list li {
+            padding: 2px 0;
+            white-space: nowrap; /* Prevents long day/time from wrapping */
+        }
+
+/* --- ADDRESS & CONTACT PLACEHOLDER --- */
+        .info-box {
+            /* Keep these for the overall container style */
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px; 
+            border-radius: var(--radius);
+            display: inline-block;
+            margin-top: 20px;
+            /* Allow text alignment for the whole box */
+            text-align: left; 
+        }
+
+        /* Styling for all paragraphs inside the info box */
+        .info-box p { 
+            display: flex; /* Use flexbox to align icon and text */
+            align-items: flex-start; 
+            margin-bottom: 10px; 
+            font-size: 1rem; 
+            padding-left: 0; /* Removed padding left */
+        }
+        
+        /* Styling for the icons */
+        .info-box i { 
+            color: var(--primary); 
+            margin-right: 8px; 
+            font-size: 1.1rem; 
+            flex-shrink: 0; 
+            /* Removed negative transform, centered icons with text */
+            transform: none; 
+            background-color: transparent; /* Removed background color */
+            padding: 0;
+        }
+        
+        /* Special handling for the Operating Hours section */
+        .hours-container {
+            display: block; 
+            padding-left: 0;
+            text-align: left; 
+            margin-top: 5px;
+            font-size: 0.95rem; 
+        }
+
+        .hours-container i {
+            /* Hours icon is now aligned with the text */
+            display: inline-block;
+            transform: none;
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .hours-list {
+            list-style: none;
+            margin-left: 0;
+            padding-left: 0;
+            margin-top: 5px;
+        }
+        
+        .hours-list li {
+            padding: 2px 0;
+            white-space: nowrap; 
+            /* Indent list items to align under the text, not the icon */
+            margin-left: 28px; 
+        }
+
+
+        /* ------------------------------------------------ */
+        /* --- NAVIGATION ARROWS (The Fix) --- */
+        /* ------------------------------------------------ */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            padding: 0 15px;
+            z-index: 10;
+        }
+
+        .carousel-nav label {
+            position: absolute; /* Position relative to .carousel-nav */
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--white);
+            font-size: 1.5rem;
+            padding: 10px 15px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background 0.3s;
+            opacity: 0.9;
+        }
+
+        .carousel-nav label:hover {
+            background: rgba(0, 0, 0, 0.8);
+            opacity: 1;
+        }
+
+        /* Positioning the actual buttons */
+        .carousel-nav .prev { left: 15px; }
+        .carousel-nav .next { right: 15px; }
+        
+        /* Hide all buttons initially */
+        .carousel-nav label { display: none; }
+
+
+        /* SHOW NEXT/PREV BUTTONS BASED ON CURRENT SLIDE */
+        /* Slide 1 active: Next button goes to slide 2, Prev button goes to slide 3 (wrap) */
+        #slide1:checked ~ .carousel-nav .next-to-2,
+        #slide1:checked ~ .carousel-nav .prev-to-3 {
+            display: block;
+        }
+
+        /* Slide 2 active: Next button goes to slide 3, Prev button goes to slide 1 */
+        #slide2:checked ~ .carousel-nav .next-to-3,
+        #slide2:checked ~ .carousel-nav .prev-to-1 {
+            display: block;
+        }
+
+        /* Slide 3 active: Next button goes to slide 1 (wrap), Prev button goes to slide 2 */
+        #slide3:checked ~ .carousel-nav .next-to-1,
+        #slide3:checked ~ .carousel-nav .prev-to-2 {
+            display: block;
+        }
+        
+        /* Slide position based on checked radio button */
+        #slide1:checked ~ .carousel-slides { transform: translateX(0%); }
+        #slide2:checked ~ .carousel-slides { transform: translateX(-33.333%); }
+        #slide3:checked ~ .carousel-slides { transform: translateX(-66.666%); }
+        
+        /* Indicator dots at the bottom */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        .carousel-indicators label {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: 2px solid rgba(0,0,0,0.3);
+        }
+        #slide1:checked ~ .carousel-indicators label:nth-child(1),
+        #slide2:checked ~ .carousel-indicators label:nth-child(2),
+        #slide3:checked ~ .carousel-indicators label:nth-child(3) {
+            background: var(--primary);
+            border: 2px solid var(--white);
+        }
+
+
+        /* --- MAIN SECTIONS --- */
+        .section {
+            padding: 40px 0;
+            text-align: center;
+        }
+        .section-header {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+        }
+
+        /* --- PRODUCTS GRID --- */
+        .product-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .product-item {
+            background: var(--white);
+            width: 250px;
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            border-top: 3px solid var(--primary);
+        }
+        .product-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .product-item h4 {
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+        }
+        .product-item p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 30px;
+        }
+        .footer a {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .footer i {
+            margin-right: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .store-name { font-size: 2.5rem; }
+            .info-box { padding: 10px 15px; }
+            .info-box p { font-size: 0.9rem; }
+            .carousel-slide img { height: 300px; }
+            .carousel-nav label { font-size: 1.2rem; padding: 8px 12px; }
+            .product-item { width: 100%; max-width: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            
+            <h1 class="store-name">POP Gadget</h1>
+            <p class="tagline">
+                Your One-Stop Shop for the Latest Tech Accessories, Mobile Gear, and Fun Gadgets!
+            </p>
+            
+        <div class="info-box">
+    	<p>
+        	<i class="fa-solid fa-location-dot"></i> 
+        	ADDRESS PLACEHOLDER: SP05, Pop Gadget, Econsave, PT No.44621, Taman Segar Perdana, 43200 Cheras, Selangor
+    	</p>
+    	<p>
+        	<i class="fa-solid fa-phone"></i> 
+        	CALL/WA PLACEHOLDER: 010-868 4023
+    	</p>
+    
+    	<p class="hours-container">
+        	<i class="fa-solid fa-clock"></i> 
+        	OPERATING HOURS
+        	<ul class="hours-list">
+            		<li>Sunday: 	10.30AM - 8.30PM</li>
+            		<li>Monday: 	10.30AM - 8.30PM</li>
+            		<li>Tuesday: 	10.30AM - 8.30PM</li>
+            		<li>Wednesday: 	10.30AM - 8.30PM</li>
+            		<li>Thursday: 	10.30AM - 8.30PM</li>
+            		<li>Friday: 	10.30AM - 8.30PM</li>
+            		<li>Saturday: 	10.30AM - 8.30PM</li>
+        		</ul>
+    		</p>
+    		<p>
+        		<i class="fa-brands fa-facebook"></i> 
+        		<a href="https://www.facebook.com/people/POP-Gadget/61578147882037/" target="_blank">Visit Our Facebook Page for Latest Deals!</a>
+    		</p>
+		</div>
+        </div>
+    </header>
+
+    
+    <section class="carousel-section">
+        <div class="container">
+            <div class="carousel">
+                <input type="radio" name="carousel-radio" id="slide1" checked>
+                <input type="radio" name="carousel-radio" id="slide2">
+                <input type="radio" name="carousel-radio" id="slide3">
+
+                <div class="carousel-slides">
+                    <div class="carousel-slide">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipMOVTSJ2Oqnog__r-FBk89YS4tpzS1ZgXBTUreq=s1360-w1360-h1020-rw" alt="Store Front / Product Display 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipMI24c8hOingOuYFnhKmTvfF6m6A7uuJUhcbYSI=s1360-w1360-h1020-rw" alt="Product Showcase 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipN6PDe35CXz7wXNfH_JzxWCn4uwzQk05P3R0L5z=s1360-w1360-h1020-rw" alt="Product Showcase 3">
+                    </div>
+                </div>
+
+                <div class="carousel-nav">
+                    <label for="slide3" class="prev prev-to-3"><i class="fas fa-chevron-left"></i></label> <label for="slide1" class="prev prev-to-1"><i class="fas fa-chevron-left"></i></label> <label for="slide2" class="prev prev-to-2"><i class="fas fa-chevron-left"></i></label> <label for="slide2" class="next next-to-2"><i class="fas fa-chevron-right"></i></label> <label for="slide3" class="next next-to-3"><i class="fas fa-chevron-right"></i></label> <label for="slide1" class="next next-to-1"><i class="fas fa-chevron-right"></i></label> </div>
+                
+                <div class="carousel-indicators">
+                    <label for="slide1"></label>
+                    <label for="slide2"></label>
+                    <label for="slide3"></label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-header">What We Offer</h2>
+            
+            <div class="product-grid">
+                
+                <div class="product-item">
+                    <i class="fa-solid fa-mobile-alt"></i>
+                    <h4>Mobile Accessories</h4>
+                    <p>Screen protectors, phone casings, power banks, and fast charging cables for all major brands.</p>
+                </div>
+
+                <div class="product-item">
+                    <i class="fa-solid fa-headphones-alt"></i>
+                    <h4>Audio & Wearables</h4>
+                    <p>Bluetooth earbuds, wireless headphones, smart watches, and fitness trackers.</p>
+                </div>
+
+                <div class="product-item">
+                    <i class="fa-solid fa-box-open"></i> <h4>Blind Boxes & Collectibles </h4>
+                    <p>Discover rare figures! Featuring popular series like Crayon Shin-chan, Ne Zha, and other fun collectibles.</p>
+                </div>
+                
+                <div class="product-item">
+                    <i class="fa-solid fa-tools"></i>
+                    <h4>Repairs & Services</h4>
+                    <p>Inquire in-store for basic device repair services and technical consultation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 POP Gadget. All Rights Reserved.</p>
+            <p>
+                <a href="https://www.facebook.com/people/POP-Gadget/61578147882037/" target="_blank">
+                    <i class="fa-brands fa-facebook"></i> POP Gadget Facebook
+                </a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
